@@ -14,9 +14,11 @@ public class Executable_java_Poo {
 		int real_age = Integer.parseInt(quest_age);
 		
 		 Student aluno = new Student(quest_name,real_age);
+		
 		 
 		 
-		 System.out.println(aluno);
+		 
+		 System.out.println("the Student´s name is "+ aluno.getName());
 
 	}
 
