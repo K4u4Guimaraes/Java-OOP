@@ -14,11 +14,13 @@ public class Executable_java_Poo {
 		int real_age = Integer.parseInt(quest_age);
 		
 		 Student aluno = new Student(quest_name,real_age);
+		 aluno.setBirthday("15/08/1995");
 		
 		 
 		 
 		 
 		 System.out.println("the Student´s name is "+ aluno.getName());
+		System.out.println("The Student was born  "+aluno.getBirthday());
 
 	}
 
