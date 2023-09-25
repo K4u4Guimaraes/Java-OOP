@@ -10,15 +10,23 @@ public class Student {
 	private String father_name;
 	private String school;
 	private int id_student;
-	private double grade1;
-	private double grade2;
-	private double grade3;
-	private double grade4;
+	
+	private Subject obj_subject = new Subject();
+	
+	public Subject getSubject(){
+		return obj_subject;
+	}
+	
+	public void setSubject(Subject obj_subject) {
+		this.obj_subject = obj_subject;
+	}
 	
 	//java constructor
-	public Student(String pattern_name, int pattern_age) {
-		name = pattern_name;
-		age = pattern_age; 
+	public Student(String pattern_name, int pattern_age, String pattern_grade1,String pattern_subject) {
+		this.setName(pattern_name);
+		this.setAge(pattern_age); 
+		this.getSubject().setGrade1(pattern_grade1);
+		this.getSubject().setSubject1(pattern_subject);
 	}
 	
 	public  String getName(){
@@ -84,37 +92,72 @@ public class Student {
 		this.id_student = id;
 	}
 	
-	public double getGrade1() {
-		return this.grade1;
-	}
-	public void setGrade1(double grade1) {
-		this.grade1 = grade1;
-	}
-	
-	public double getGrade2() {
-		return this.grade2;
-	}
-	public void setGrade2(double grade2) {
-		this.grade2 = grade2;
-	}
-	
-	public double getGrade3() {
-		return this.grade3;
-	}
-	public void setGrade3(double grade3) {
-		this.grade3 = grade3;
-	}
-	
-	public double getGrade4() {
-		return this.grade4;
-	}
-	public void setGrade4(double grade4) {
-		this.grade4 = grade4;
-	}
-	
+
 	public double getFinal_media() {
-		return (grade1 + grade2 + grade3 + grade4)/4;
+		return (obj_subject.getGrade1() + obj_subject.getGrade2() + obj_subject.getGrade3() + obj_subject.getGrade4())/4;
 	}
+	
+	public boolean getAprovved(){
+		double media = this.getFinal_media();
+		
+		if(media >= 7) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	//toString is used when you want to show the object, without this  method, if you use print in object, 
+	//it will show where the object is allocated in the memory 
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", birthday=" + birthday + ", rg=" + rg + ", cpf=" + cpf
+				+ ", mother_name=" + mother_name + ", father_name=" + father_name + ", school=" + school
+				+ ", id_student=" + id_student + ", grade1=" + obj_subject.getGrade1() + ", grade2=" + obj_subject.getGrade2() + ", grade3=" + obj_subject.getGrade3()
+				+ ", grade4=" + obj_subject.getGrade4() + "]";
+	}
+
+
+	
+	
+	@Override
+	
+	// But it can change when you declare the classes equals and Hashcode.
+	// the conditional operator will return true as a result, 
+	//because you´re declaring that the attributes being compared are their names (and they´re the same),
+	// instead of their memory allocations.
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
