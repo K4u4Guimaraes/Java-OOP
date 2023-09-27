@@ -1,5 +1,8 @@
 package StudentClass;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Student {
 	private String name;
 	private int age;
@@ -11,22 +14,23 @@ public class Student {
 	private String school;
 	private int id_student;
 	
-	private Subject obj_subject = new Subject();
+	private List  <Subject> obj_subjects = new ArrayList<Subject>();
 	
-	public Subject getSubject(){
-		return obj_subject;
+	public void setSubjects(List<Subject> sub) {
+		this.obj_subjects = sub;
 	}
 	
-	public void setSubject(Subject obj_subject) {
-		this.obj_subject = obj_subject;
+	public List<Subject> getSubjects(){
+		return this.obj_subjects;
 	}
+
 	
 	//java constructor
-	public Student(String pattern_name, int pattern_age, String pattern_grade1,String pattern_subject) {
+	public Student(String pattern_name, int pattern_age /*String pattern_grade1,String pattern_subject*/) {
 		this.setName(pattern_name);
 		this.setAge(pattern_age); 
-		this.getSubject().setGrade1(pattern_grade1);
-		this.getSubject().setSubject1(pattern_subject);
+		//this.getSubject().setGrade1(pattern_grade1);
+		//this.getSubject().setSubject1(pattern_subject);
 	}
 	
 	public  String getName(){
@@ -94,7 +98,13 @@ public class Student {
 	
 
 	public double getFinal_media() {
-		return (obj_subject.getGrade1() + obj_subject.getGrade2() + obj_subject.getGrade3() + obj_subject.getGrade4())/4;
+		
+		double grades = 0.0;
+		for(Subject array_obj: obj_subjects) {
+			grades += array_obj.getGrade1();
+		}
+		
+		return grades/obj_subjects.size();
 	}
 	
 	public boolean getAprovved(){
@@ -113,8 +123,7 @@ public class Student {
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", birthday=" + birthday + ", rg=" + rg + ", cpf=" + cpf
 				+ ", mother_name=" + mother_name + ", father_name=" + father_name + ", school=" + school
-				+ ", id_student=" + id_student + ", grade1=" + obj_subject.getGrade1() + ", grade2=" + obj_subject.getGrade2() + ", grade3=" + obj_subject.getGrade3()
-				+ ", grade4=" + obj_subject.getGrade4() + "]";
+				+ ", id_student=" + id_student +   "]";
 	}
 
 

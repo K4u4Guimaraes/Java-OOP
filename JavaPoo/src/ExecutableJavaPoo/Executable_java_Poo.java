@@ -3,6 +3,7 @@ package ExecutableJavaPoo;
 import javax.swing.JOptionPane;
 
 import StudentClass.Student;
+import StudentClass.Subject;
 
 public class Executable_java_Poo {
 
@@ -10,16 +11,16 @@ public class Executable_java_Poo {
 			
 		
 		 //testing toString method
-		 Student aluno2= new Student("Yami Yugi",17,"7","card game");
+		 Student aluno2= new Student("Yami Yugi",17);
 		System.out.println(aluno2);
 		
 		
 		//Equals and Hashcode are used to differentiate objects
-		Student aluno3 = new Student("Jotaro Kujo",17,"9","Biology");
-		Student aluno4 = new Student("Jotaro Kujo",17,"9", "Biology");
+		Student aluno3 = new Student("Jotaro Kujo",17);//,"Biology");
+		Student aluno4 = new Student("Jotaro Kujo",17);//, "Biology");
 		//this conditional operator shows us that the expression bellow is false,
 		//because java differentiates objects by their memory allocations.
-		//!!WARNING!! LOOK AT THE 111 LINE FROM THE PACKAGE "STUDENT.JAVA"
+		//!!WARNING!! LOOK AT THE 134 LINE FROM THE PACKAGE "STUDENT.JAVA"
 		if(aluno3.equals(aluno4)) {
 			System.out.println("they큥e the same");
 		}else {
@@ -29,18 +30,30 @@ public class Executable_java_Poo {
 		
 		String quest_name = JOptionPane.showInputDialog("Enter the Student큦 name:");
 		String quest_age = JOptionPane.showInputDialog("Enter the Student큦 age:");
-		int real_age = Integer.parseInt(quest_age);
-		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 first grade: ");
-		 String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject");
+		int real_age = Integer.parseInt(quest_age); 
 		
-		 Student aluno = new Student(quest_name,real_age,quest_grade1,quest_subject); 
+		Student aluno = new Student(quest_name,real_age);
+		 
+		 int confirme = JOptionPane.showConfirmDialog(null, "do you want to add the subjects and the grades?"); 
+			 while(confirme == 0) {
+				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 grade: ");
+						 String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject");
+						 int result_grade = Integer.parseInt(quest_grade1);
+							 Subject subjects = new Subject();
+							 subjects.setSubject1(quest_subject);
+							 subjects.setGrade1(result_grade);
+							  aluno.getSubjects().add(subjects);
+							 int exit = JOptionPane.showConfirmDialog(null, "exit?");
+							 
+							 if(exit == 0) {
+								 break;
+							 }
+			 }
+		 
+		 
+		
 		 aluno.setBirthday("15/08/1995");
-		 String quest_grade2 = JOptionPane.showInputDialog("Enter the Student큦 second grade: ");
-		 aluno.getSubject().setGrade2(Double.parseDouble(quest_grade2));
-		 String quest_grade3 = JOptionPane.showInputDialog("Enter the Student큦 third grade: ");
-		 aluno.getSubject().setGrade3(Double.parseDouble(quest_grade3));
-		 String quest_grade4 = JOptionPane.showInputDialog("Enter the Student큦 fourth grade: ");
-		 aluno.getSubject().setGrade4(Double.parseDouble(quest_grade4));
+
 		 
 		  System.out.println("the Student큦 name is "+ aluno.getName());
 		System.out.println("The Student was born  "+aluno.getBirthday());
@@ -56,11 +69,6 @@ public class Executable_java_Poo {
 		 }else {
 			 System.out.println("thanks for using our system");
 		 }
-		 
-		
-		
-		
-
 	}
 
 }
