@@ -107,13 +107,17 @@ public class Student {
 		return grades/obj_subjects.size();
 	}
 	
-	public boolean getAprovved(){
+	public String getAprovved(){
 		double media = this.getFinal_media();
 		
-		if(media >= 7) {
-			return true;
+		if(media >= 5) {
+			if(media >= 7) {
+				return "approved";
+			}else {
+				return "come to school";
+			}
 		}else {
-			return false;
+			return "reproved";
 		}
 	}
 

@@ -20,7 +20,7 @@ public class Executable_java_Poo {
 		Student aluno4 = new Student("Jotaro Kujo",17);//, "Biology");
 		//this conditional operator shows us that the expression bellow is false,
 		//because java differentiates objects by their memory allocations.
-		//!!WARNING!! LOOK AT THE 134 LINE FROM THE PACKAGE "STUDENT.JAVA"
+		//!!WARNING!! LOOK AT THE 138 LINE FROM THE PACKAGE "STUDENT.JAVA"
 		if(aluno3.equals(aluno4)) {
 			System.out.println("they큥e the same");
 		}else {
@@ -33,27 +33,46 @@ public class Executable_java_Poo {
 		int real_age = Integer.parseInt(quest_age); 
 		
 		Student aluno = new Student(quest_name,real_age);
-		 
-		 int confirme = JOptionPane.showConfirmDialog(null, "do you want to add the subjects and the grades?"); 
-			 while(confirme == 0) {
-				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 grade: ");
-						 String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject");
+		
+		String add_sub = JOptionPane.showInputDialog("How many subjects and grades would you like to add?");
+		int res_sub = Integer.parseInt(add_sub);
+		if(res_sub > 1) {
+			 
+			 for(int count = 1; count <= res_sub; count++) {
+				 		String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject "+count);
+				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 grade: "+count);
+						
 						 int result_grade = Integer.parseInt(quest_grade1);
 							 Subject subjects = new Subject();
 							 subjects.setSubject1(quest_subject);
 							 subjects.setGrade1(result_grade);
 							  aluno.getSubjects().add(subjects);
-							 int exit = JOptionPane.showConfirmDialog(null, "exit?");
-							 
-							 if(exit == 0) {
-								 break;
-							 }
+							  
+							  
 			 }
+			
+		}
 		 
+	
+			 
+		int del =  JOptionPane.showConfirmDialog(null,"deseja remover alguma disciplina?");
+		if(del == 0 ) {
+			int keep_remove = 0;
+			int pos = 1;
+			
+			while(keep_remove == 0) {
+			String subject_delete = JOptionPane.showInputDialog("Enter the subject큦 position that you want to delete ");
+			aluno.getSubjects().remove(Integer.valueOf(subject_delete).intValue() - pos);
+			pos++;
+			keep_remove = JOptionPane.showConfirmDialog(null,"do you wanto to continue removing?");
+			
+				}
+		}
 		 
-		
 		 aluno.setBirthday("15/08/1995");
-
+		 
+		 Subject test = new Subject();
+		 System.out.println(test);
 		 
 		  System.out.println("the Student큦 name is "+ aluno.getName());
 		System.out.println("The Student was born  "+aluno.getBirthday());
@@ -61,14 +80,10 @@ public class Executable_java_Poo {
 		 int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
 		 if(confirm == 0) {
 			 System.out.println("The student," + aluno.getName()+", final media is "+aluno.getFinal_media());
-			 if(aluno.getAprovved() == true) {
-				 System.out.println("Approved!");
-			 }else {
-				 System.out.println("rejected");
-			 }
-		 }else {
-			 System.out.println("thanks for using our system");
+			System.out.println(aluno.getAprovved());
 		 }
+		 
+		 
 	}
 
 }
