@@ -1,5 +1,8 @@
 package ExecutableJavaPoo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import StudentClass.Student;
@@ -27,9 +30,14 @@ public class Executable_java_Poo {
 			System.out.println("they´re not the same");
 		}
 		
+		String list_quest = JOptionPane.showInputDialog("How mane studemts would you like to add?");
+		int result_count = Integer.parseInt(list_quest);
+		List<Student> students = new ArrayList<Student>(); 
 		
-		String quest_name = JOptionPane.showInputDialog("Enter the Student´s name:");
-		String quest_age = JOptionPane.showInputDialog("Enter the Student´s age:");
+		for (int counter = 1; counter <= result_count; counter++ ) {
+		
+		String quest_name = JOptionPane.showInputDialog("Enter the Student´s name " +counter + ":");
+		String quest_age = JOptionPane.showInputDialog("Enter the Student´s age " +counter+ ":");
 		int real_age = Integer.parseInt(quest_age); 
 		
 		Student aluno = new Student(quest_name,real_age);
@@ -69,18 +77,20 @@ public class Executable_java_Poo {
 				}
 		}
 		 
-		 aluno.setBirthday("15/08/1995");
-		 
-		 Subject test = new Subject();
-		 System.out.println(test);
-		 
-		  System.out.println("the Student´s name is "+ aluno.getName());
-		System.out.println("The Student was born  "+aluno.getBirthday());
-		
-		 int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
+		  students.add(aluno);
+		  
+		}
+			
+		int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
 		 if(confirm == 0) {
-			 System.out.println("The student," + aluno.getName()+", final media is "+aluno.getFinal_media());
-			System.out.println(aluno.getAprovved());
+		//java foreach be like:
+		for (Student student : students) {
+			 System.out.println("The student," + student.getName()+", final media is "+student.getFinal_media());
+			System.out.println(student.getAprovved());
+			System.out.println("---------------------------------------------------------------------------------");
+			}
+		 }else {
+			 System.out.println("thanks for using our system ;)");
 		 }
 		 
 		 
