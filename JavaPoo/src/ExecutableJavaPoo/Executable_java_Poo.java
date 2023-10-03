@@ -39,23 +39,18 @@ public class Executable_java_Poo {
 		String quest_name = JOptionPane.showInputDialog("Enter the Student큦 name " +counter + ":");
 		String quest_age = JOptionPane.showInputDialog("Enter the Student큦 age " +counter+ ":");
 		int real_age = Integer.parseInt(quest_age); 
-		
 		Student aluno = new Student(quest_name,real_age);
-		
 		String add_sub = JOptionPane.showInputDialog("How many subjects and grades would you like to add?");
 		int res_sub = Integer.parseInt(add_sub);
 		if(res_sub > 1) {
-			 
 			 for(int count = 1; count <= res_sub; count++) {
 				 		String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject "+count);
 				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 grade: "+count);
-						
 						 int result_grade = Integer.parseInt(quest_grade1);
 							 Subject subjects = new Subject();
 							 subjects.setSubject1(quest_subject);
 							 subjects.setGrade1(result_grade);
 							  aluno.getSubjects().add(subjects);
-							  
 							  
 			 }
 			
@@ -72,7 +67,7 @@ public class Executable_java_Poo {
 			String subject_delete = JOptionPane.showInputDialog("Enter the subject큦 position that you want to delete ");
 			aluno.getSubjects().remove(Integer.valueOf(subject_delete).intValue() - pos);
 			pos++;
-			keep_remove = JOptionPane.showConfirmDialog(null,"do you wanto to continue removing?");
+			keep_remove = JOptionPane.showConfirmDialog(null,"do you want to continue removing?");
 			
 				}
 		}
@@ -80,20 +75,56 @@ public class Executable_java_Poo {
 		  students.add(aluno);
 		  
 		}
-			
+		
+		String student_remove = "";
+		String quest_name = "";
+		
 		int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
 		 if(confirm == 0) {
+		int quest_student = JOptionPane.showConfirmDialog(null, "Would you want to see about one student?");
+		int quest_remove = JOptionPane.showConfirmDialog(null,"Would you want to remove one student?");
+		if(quest_student == 0) {
+		quest_name = JOptionPane.showInputDialog("Enter the Student큦 name");
+		}else if(quest_remove == 0){
+			student_remove = JOptionPane.showInputDialog("Enter the student큦 postion that you want to remove");
+		}
 		//java foreach be like:
 		for (Student student : students) {
-			 System.out.println("The student," + student.getName()+", final media is "+student.getFinal_media());
-			System.out.println(student.getAprovved());
-			System.out.println("---------------------------------------------------------------------------------");
+			if(student_remove.length() != 0) {
+				int remove_yes =0;
+				while(remove_yes == 0) {
+				int pos = 1;
+				students.remove(Integer.valueOf(student_remove).intValue() -pos);
+				pos++;
+				 remove_yes = JOptionPane.showConfirmDialog(null, "Do you want to continue removing ?");
+				}
 			}
+			if(quest_name.length() != 0) {
+				if(student.getName().equalsIgnoreCase(quest_name)) {
+					 System.out.println("The student," + student.getName()+", final media is "+student.getFinal_media());
+					System.out.println(student.getAprovved());
+					System.out.println("---------------------------------------------------------------------------------");
+					break;
+				}
+			}else {
+				 System.out.println("The student," + student.getName()+", final media is "+student.getFinal_media());
+					System.out.println(student.getAprovved());
+					System.out.println("---------------------------------------------------------------------------------");
+			}
+		}
 		 }else {
-			 System.out.println("thanks for using our system ;)");
+			 System.out.println("Thanks for using our system");
 		 }
 		 
+		 System.out.println("List of remaining students");
+		 for(Student student: students) {
+			 System.out.println(student.getName());
+			 System.out.println("subjects: ");
+			 for(Subject subject: student.getSubjects())
+				 System.out.println(subject.getSubject1());
+			 System.out.println("---------------------------------------------------------------------------------------");
+		 }
 		 
 	}
-
+	
 }
