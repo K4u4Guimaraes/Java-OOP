@@ -42,7 +42,7 @@ public class Executable_java_Poo {
 		Student aluno = new Student(quest_name,real_age);
 		String add_sub = JOptionPane.showInputDialog("How many subjects and grades would you like to add?");
 		int res_sub = Integer.parseInt(add_sub);
-		if(res_sub > 1) {
+		if(res_sub >= 1) {
 			 for(int count = 1; count <= res_sub; count++) {
 				 		String quest_subject = JOptionPane.showInputDialog("Enter the Student큦 subject "+count);
 				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student큦 grade: "+count);
@@ -62,7 +62,6 @@ public class Executable_java_Poo {
 		if(del == 0 ) {
 			int keep_remove = 0;
 			int pos = 1;
-			
 			while(keep_remove == 0) {
 			String subject_delete = JOptionPane.showInputDialog("Enter the subject큦 position that you want to delete ");
 			aluno.getSubjects().remove(Integer.valueOf(subject_delete).intValue() - pos);
@@ -78,7 +77,6 @@ public class Executable_java_Poo {
 		
 		String student_remove = "";
 		String quest_name = "";
-		
 		int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
 		 if(confirm == 0) {
 		int quest_student = JOptionPane.showConfirmDialog(null, "Would you want to see about one student?");
@@ -124,6 +122,31 @@ public class Executable_java_Poo {
 				 System.out.println(subject.getSubject1());
 			 System.out.println("---------------------------------------------------------------------------------------");
 		 }
+		 
+		 	int quest_sub = JOptionPane.showConfirmDialog(null,"would you want to substitute one student?");
+		 	
+		 if(quest_sub == 0) {
+			 String name = JOptionPane.showInputDialog("Enter the student큦 name");
+		 //Search students by the array index
+		 for(int pos =0; pos< students.size();pos++) {
+			 Student student_ray = students.get(pos);
+			 if(student_ray.getName().equalsIgnoreCase(name)){
+				 Student trade = new Student("Kujo",16);
+				 Subject sub = new Subject();
+				 sub.setSubject1("stand");
+				 sub.setGrade1(9);
+				 trade.getSubjects().add(sub);
+				 students.set(pos, trade);
+				 
+				 student_ray = students.get(pos);
+			 }
+			 System.out.println("Student = "+student_ray.getName());
+			 System.out.println("media = " +student_ray.getFinal_media());
+			 System.out.println("Result = "+student_ray.getAprovved());
+			 System.out.println("-----------------------------------------------------------------------------------------");
+		 }
+		 }
+		 
 		 
 	}
 	
