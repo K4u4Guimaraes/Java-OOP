@@ -3,6 +3,8 @@ package StudentClass;
 import java.util.ArrayList;
 import java.util.List;
 
+import constantes.Status;
+
 public class Student {
 	private String name;
 	private int age;
@@ -112,12 +114,12 @@ public class Student {
 		
 		if(media >= 5) {
 			if(media >= 7) {
-				return "approved";
+				return Status.approved;
 			}else {
-				return "come to school";
+				return Status.come_school;
 			}
 		}else {
-			return "reproved";
+			return Status.reproved;
 		}
 	}
 
