@@ -1,6 +1,7 @@
 package ExecutableJavaPoo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -34,9 +35,9 @@ public class Executable_java_Poo {
 		String list_quest = JOptionPane.showInputDialog("How mane studemts would you like to add?");
 		int result_count = Integer.parseInt(list_quest);
 		List<Student> students = new ArrayList<Student>(); 
-		List<Student> students_come_school = new ArrayList<Student>(); 
-		List<Student> students_approved = new ArrayList<Student>(); 
-		List<Student> students_reproved = new ArrayList<Student>(); 
+		//it´s a list that has an identification key responsible for identifying a sequence of values   
+		HashMap<String, List<Student>> maps = new HashMap<String, List<Student>>();
+	
 		
 		for (int counter = 1; counter <= result_count; counter++ ) {
 		
@@ -79,13 +80,17 @@ public class Executable_java_Poo {
 		  
 		}
 		
+		maps.put(Status.approved, new ArrayList<Student>());
+		maps.put(Status.reproved, new ArrayList<Student>());
+		maps.put(Status.come_school, new ArrayList<Student>());
+		
 		for(Student status: students) {
 			if(status.getAprovved().equalsIgnoreCase(Status.approved)){
-				students_approved.add(status);
+				maps.get(Status.approved).add(status);
 			}else if(status.getAprovved().equalsIgnoreCase(Status.come_school)) {
-				students_come_school.add(status);
+				maps.get(Status.come_school).add(status);
 			}else {
-				students_reproved.add(status);
+				maps.get(Status.reproved).add(status);
 			}
 		}
 		
@@ -135,8 +140,8 @@ public class Executable_java_Poo {
 		 	
 		 
 		 System.out.println("--------------Approved Students-------------- ");
-			for(int pos = 0; pos <students_approved.size(); pos++) {
-				Student student_status = students_approved.get(pos);
+			for(int pos = 0; pos <maps.get(Status.approved).size(); pos++) {
+				Student student_status = maps.get(Status.approved).get(pos);
 				System.out.println("Student: "+student_status.getName());
 				System.out.println("Status: "+student_status.getAprovved());
 				System.out.println("Final media: "+student_status.getFinal_media());
@@ -144,8 +149,8 @@ public class Executable_java_Poo {
 			}
 	
 			System.out.println("--------------Come to Students-------------- ");
-			for(int pos = 0; pos <students_come_school.size(); pos++) {
-				Student student_status = students_come_school.get(pos);
+			for(int pos = 0; pos <maps.get(Status.come_school).size(); pos++) {
+				Student student_status = maps.get(Status.come_school).get(pos);
 				System.out.println("Student: "+student_status.getName());
 				System.out.println("Status: "+student_status.getAprovved());
 				System.out.println("Final media: "+student_status.getFinal_media());
@@ -154,8 +159,8 @@ public class Executable_java_Poo {
 			}
 			
 				System.out.println("--------------Reproved Students-------------- ");
-				for(int posi = 0; posi <students_reproved.size(); posi++) {
-					Student student_status_reprove = students_reproved.get(posi);
+				for(int posi = 0; posi <maps.get(Status.reproved).size(); posi++) {
+					Student student_status_reprove = maps.get(Status.reproved).get(posi);
 					System.out.println("Student: "+student_status_reprove.getName());
 					System.out.println("Status: "+student_status_reprove.getAprovved());
 					System.out.println("Final media: "+student_status_reprove.getFinal_media());
