@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import StudentClass.Student;
 import StudentClass.Subject;
+import constantes.Status;
 
 public class Executable_java_Poo {
 
@@ -33,6 +34,9 @@ public class Executable_java_Poo {
 		String list_quest = JOptionPane.showInputDialog("How mane studemts would you like to add?");
 		int result_count = Integer.parseInt(list_quest);
 		List<Student> students = new ArrayList<Student>(); 
+		List<Student> students_come_school = new ArrayList<Student>(); 
+		List<Student> students_approved = new ArrayList<Student>(); 
+		List<Student> students_reproved = new ArrayList<Student>(); 
 		
 		for (int counter = 1; counter <= result_count; counter++ ) {
 		
@@ -75,6 +79,16 @@ public class Executable_java_Poo {
 		  
 		}
 		
+		for(Student status: students) {
+			if(status.getAprovved().equalsIgnoreCase(Status.approved)){
+				students_approved.add(status);
+			}else if(status.getAprovved().equalsIgnoreCase(Status.come_school)) {
+				students_come_school.add(status);
+			}else {
+				students_reproved.add(status);
+			}
+		}
+		
 		String student_remove = "";
 		String quest_name = "";
 		int confirm =JOptionPane.showConfirmDialog(null, "Do you want to see the final media? ");
@@ -104,10 +118,6 @@ public class Executable_java_Poo {
 					System.out.println("---------------------------------------------------------------------------------");
 					break;
 				}
-			}else {
-				 System.out.println("The student," + student.getName()+", final media is "+student.getFinal_media());
-					System.out.println(student.getAprovved());
-					System.out.println("---------------------------------------------------------------------------------");
 			}
 		}
 		 }else {
@@ -122,9 +132,37 @@ public class Executable_java_Poo {
 				 System.out.println(subject.getSubject1());
 			 System.out.println("---------------------------------------------------------------------------------------");
 		 }
-		 
-		 	int quest_sub = JOptionPane.showConfirmDialog(null,"would you want to substitute one student?");
 		 	
+		 
+		 System.out.println("--------------Approved Students-------------- ");
+			for(int pos = 0; pos <students_approved.size(); pos++) {
+				Student student_status = students_approved.get(pos);
+				System.out.println("Student: "+student_status.getName());
+				System.out.println("Status: "+student_status.getAprovved());
+				System.out.println("Final media: "+student_status.getFinal_media());
+				System.out.println("--------------------------------------------------");
+			}
+	
+			System.out.println("--------------Come to Students-------------- ");
+			for(int pos = 0; pos <students_come_school.size(); pos++) {
+				Student student_status = students_come_school.get(pos);
+				System.out.println("Student: "+student_status.getName());
+				System.out.println("Status: "+student_status.getAprovved());
+				System.out.println("Final media: "+student_status.getFinal_media());
+				System.out.println("--------------------------------------------------");
+				
+			}
+			
+				System.out.println("--------------Reproved Students-------------- ");
+				for(int posi = 0; posi <students_reproved.size(); posi++) {
+					Student student_status_reprove = students_reproved.get(posi);
+					System.out.println("Student: "+student_status_reprove.getName());
+					System.out.println("Status: "+student_status_reprove.getAprovved());
+					System.out.println("Final media: "+student_status_reprove.getFinal_media());
+					System.out.println("--------------------------------------------------");
+			}
+		 /*
+		 	int quest_sub = JOptionPane.showConfirmDialog(null,"would you want to substitute one student?");	
 		 if(quest_sub == 0) {
 			 String name = JOptionPane.showInputDialog("Enter the student´s name");
 		 //Search students by the array index
@@ -145,7 +183,7 @@ public class Executable_java_Poo {
 			 System.out.println("Result = "+student_ray.getAprovved());
 			 System.out.println("-----------------------------------------------------------------------------------------");
 		 }
-		 }
+		 }*/
 		 
 		 
 	}
