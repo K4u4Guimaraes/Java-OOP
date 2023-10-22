@@ -13,6 +13,11 @@ import constantes.Status;
 public class Executable_java_Poo {
 
 	public static void main(String[] args) {
+		
+		String login = JOptionPane.showInputDialog("Enter  the login");
+		String password = JOptionPane.showInputDialog("enter the password");
+		
+		if(login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
 			
 		
 		 //testing toString method
@@ -166,6 +171,10 @@ public class Executable_java_Poo {
 					System.out.println("Final media: "+student_status_reprove.getFinal_media());
 					System.out.println("--------------------------------------------------");
 			}
+		}else {
+			System.out.println("something gone wrong  :( ");
+			System.out.println("login or password invalid");
+		}
 		 /*
 		 	int quest_sub = JOptionPane.showConfirmDialog(null,"would you want to substitute one student?");	
 		 if(quest_sub == 0) {
