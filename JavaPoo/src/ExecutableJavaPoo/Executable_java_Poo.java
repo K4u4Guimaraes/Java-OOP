@@ -6,18 +6,24 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import StudentClass.Secretary;
 import StudentClass.Student;
 import StudentClass.Subject;
 import constantes.Status;
+import functionClass.authenticationClass;
+import interfaces.LoginSecretary;
 
 public class Executable_java_Poo {
 
 	public static void main(String[] args) {
 		
+		
 		String login = JOptionPane.showInputDialog("Enter  the login");
 		String password = JOptionPane.showInputDialog("enter the password");
 		
-		if(login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+		
+		
+		if(new authenticationClass(new Secretary(login, password)).authenticator()) {
 			
 		
 		 //testing toString method
@@ -32,30 +38,30 @@ public class Executable_java_Poo {
 		//because java differentiates objects by their memory allocations.
 		//!!WARNING!! LOOK AT THE 138 LINE FROM THE PACKAGE "STUDENT.JAVA"
 		if(aluno3.equals(aluno4)) {
-			System.out.println("they´re the same");
+			System.out.println("theyï¿½re the same");
 		}else {
-			System.out.println("they´re not the same");
+			System.out.println("theyï¿½re not the same");
 		}
 		
-		String list_quest = JOptionPane.showInputDialog("How mane studemts would you like to add?");
+		String list_quest = JOptionPane.showInputDialog("How many students would you want to add?");
 		int result_count = Integer.parseInt(list_quest);
 		List<Student> students = new ArrayList<Student>(); 
-		//it´s a list that has an identification key responsible for identifying a sequence of values   
+		//itï¿½s a list that has an identification key responsible for identifying a sequence of values   
 		HashMap<String, List<Student>> maps = new HashMap<String, List<Student>>();
 	
 		
 		for (int counter = 1; counter <= result_count; counter++ ) {
 		
-		String quest_name = JOptionPane.showInputDialog("Enter the Student´s name " +counter + ":");
-		String quest_age = JOptionPane.showInputDialog("Enter the Student´s age " +counter+ ":");
+		String quest_name = JOptionPane.showInputDialog("Enter the Studentï¿½s name " +counter + ":");
+		String quest_age = JOptionPane.showInputDialog("Enter the Studentï¿½s age " +counter+ ":");
 		int real_age = Integer.parseInt(quest_age); 
 		Student aluno = new Student(quest_name,real_age);
 		String add_sub = JOptionPane.showInputDialog("How many subjects and grades would you like to add?");
 		int res_sub = Integer.parseInt(add_sub);
 		if(res_sub >= 1) {
 			 for(int count = 1; count <= res_sub; count++) {
-				 		String quest_subject = JOptionPane.showInputDialog("Enter the Student´s subject "+count);
-				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Student´s grade: "+count);
+				 		String quest_subject = JOptionPane.showInputDialog("Enter the Studentï¿½s subject "+count);
+				 		 String quest_grade1 = JOptionPane.showInputDialog("Enter the Studentï¿½s grade: "+count);
 						 int result_grade = Integer.parseInt(quest_grade1);
 							 Subject subjects = new Subject();
 							 subjects.setSubject1(quest_subject);
@@ -73,7 +79,7 @@ public class Executable_java_Poo {
 			int keep_remove = 0;
 			int pos = 1;
 			while(keep_remove == 0) {
-			String subject_delete = JOptionPane.showInputDialog("Enter the subject´s position that you want to delete ");
+			String subject_delete = JOptionPane.showInputDialog("Enter the subjectï¿½s position that you want to delete ");
 			aluno.getSubjects().remove(Integer.valueOf(subject_delete).intValue() - pos);
 			pos++;
 			keep_remove = JOptionPane.showConfirmDialog(null,"do you want to continue removing?");
@@ -106,9 +112,9 @@ public class Executable_java_Poo {
 		int quest_student = JOptionPane.showConfirmDialog(null, "Would you want to see about one student?");
 		int quest_remove = JOptionPane.showConfirmDialog(null,"Would you want to remove one student?");
 		if(quest_student == 0) {
-		quest_name = JOptionPane.showInputDialog("Enter the Student´s name");
+		quest_name = JOptionPane.showInputDialog("Enter the Studentï¿½s name");
 		}else if(quest_remove == 0){
-			student_remove = JOptionPane.showInputDialog("Enter the student´s postion that you want to remove");
+			student_remove = JOptionPane.showInputDialog("Enter the studentï¿½s postion that you want to remove");
 		}
 		//java foreach be like:
 		for (Student student : students) {
@@ -178,7 +184,7 @@ public class Executable_java_Poo {
 		 /*
 		 	int quest_sub = JOptionPane.showConfirmDialog(null,"would you want to substitute one student?");	
 		 if(quest_sub == 0) {
-			 String name = JOptionPane.showInputDialog("Enter the student´s name");
+			 String name = JOptionPane.showInputDialog("Enter the studentï¿½s name");
 		 //Search students by the array index
 		 for(int pos =0; pos< students.size();pos++) {
 			 Student student_ray = students.get(pos);

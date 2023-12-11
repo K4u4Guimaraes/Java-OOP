@@ -5,14 +5,7 @@ import java.util.List;
 
 import constantes.Status;
 
-public class Student {
-	private String name;
-	private int age;
-	private String birthday;
-	private String rg;
-	private String cpf;
-	private String mother_name;
-	private String father_name;
+public class Student  extends Person{
 	private String school;
 	private int id_student;
 	
@@ -36,14 +29,14 @@ public class Student {
 	}
 	
 	public  String getName(){
-		return this. name;
+		return super.name;
 	}
 	public void setName(String name) {
-		this.name =name;
+		super.name =name;
 	}
 		
 	public int getAge() {
-		return this.age;
+		return super.age;
 	}
 	public void setAge(int age) {
 		this.age = age;
@@ -139,7 +132,7 @@ public class Student {
 	
 	// But it can change when you declare the classes equals and Hashcode.
 	// the conditional operator will return true as a result, 
-	//because you´re declaring that the attributes being compared are their names (and they´re the same),
+	//because youï¿½re declaring that the attributes being compared are their names (and theyï¿½re the same),
 	// instead of their memory allocations.
 	public int hashCode() {
 		final int prime = 31;
@@ -164,7 +157,21 @@ public class Student {
 			return false;
 		return true;
 	}
+
+	@Override
+	public double getPayment() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean adulthood() {
+		return age >= 21;
+	}
 	
+	
+	public String msg_adulthood() {
+		return this.adulthood() ? "you can pass!!" : "tou cannot pass";
+	}
 	
 	
 	
